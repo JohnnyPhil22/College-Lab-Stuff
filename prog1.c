@@ -157,4 +157,175 @@ int main () {
         printf("Sunday");
     }
 }
+
+// Evaluate value of y=x^n
+#include <stdio.h>
+#include <math.h>
+
+int main () {
+    int y,x,n;
+    printf("Enter values of x and n: ");
+    scanf("%d %d",&x,&n);
+    y=pow(x,n);
+    printf("%d\n",y);
+}
+
+// Determine factorial of given number
+#include <stdio.h>
+
+int main () {
+    int n,ori,fac=1;
+    printf("Enter number to find factorial: ");
+    scanf("%d",&n);
+    ori=n;
+    while (n>0) {
+        fac*=n;
+        n-=1;
+    }
+    printf("Factorial of %d = %d\n",ori,fac);
+}
+
+// Print prime numbers between 1 and 300
+#include <stdio.h>
+
+int main() {
+    int lower, upper, i, j, flag;
+
+    printf("Enter lower and upper limits of interval: ");
+    scanf("%d %d", &lower,&upper);
+
+    printf("Prime numbers between %d and %d are:\n",lower, upper);
+
+    for (i = lower; i <= upper; i++) {
+        if (i == 1 || i == 0) {
+            continue;
+        }
+
+        flag = 1;
+
+        for (j = 2; j <= i / 2; ++j) {
+            if (i % j == 0) {
+                flag = 0;
+                break;
+            }
+        }
+
+        if (flag == 1) {
+            printf("%d\n", i);
+        }
+    }
+}
+
+// Print ASCII values and their characters
+#include <stdio.h>
+int main () {
+    int k;
+    for (k=0;k<=255;k++) {
+        printf("ASCII Value of %c is %d\n",k,k);
+    }
+}
+
+// Print all Armstrong number between 1 and 2000
+#include <stdio.h>
+
+int main () {
+    int i=1,ori,rem,sum;
+    while (i<=2000) {
+        ori=i;
+        sum=0;
+        while (ori!=0) {
+            rem=ori%10;
+            sum+=rem*rem*rem;
+            ori/=10;
+        }
+        if (sum==i) {
+            printf("%d\n",i);
+        }
+        i++;
+    }
+}
+
+// Menu driven program for factorial of number, find out if number is prime number or not, number is odd or even and exit
+#include <stdio.h>
+#include <stdlib.h>
+
+int main () {
+    int choice;
+    while (1) {
+        printf("1. Factorial of number\n2. Prime number or not\n3. Odd or even number\n4. Exit\nEnter choice: ");
+        scanf("%d",&choice);
+        switch (choice) {
+            case 1:
+            int n,ori,fac=1;
+            printf("Enter number to find factorial: ");
+            scanf("%d",&n);
+            ori=n;
+            while (n>0) {
+                fac*=n;
+                n-=1;
+            }
+            printf("Factorial of %d = %d\n",ori,fac);
+            break;
+
+            case 2:
+            int num,i,flag=0;
+            printf("Enter a positive integer: ");
+            scanf("%d", &num);
+            
+            if (num==0||num==1) {
+                flag=1;
+            }
+            
+            for (i=2;i<=num/2;i++) {
+                if (num%i==0) {
+                    flag=1;
+                    break;
+                }
+            }
+            
+            if (flag==0) {
+                printf("%d is a prime number.\n",num);
+            } else {
+                printf("%d is not a prime number.\n",num);
+            }
+            break;
+
+            case 3:
+            int number;
+            printf("Enter number: ");
+            scanf("%d",&number);
+
+            if (number%2==0) {
+                printf("%d is even number\n",number);
+            } else {
+                printf("%d is odd number\n",number);
+            }
+            break;
+
+            case 4:
+            exit(0);
+
+            default:
+            printf("Entered wrong choice\n");
+        }
+    }
+}
+
+// Check if year is leap year or not using functions
+#include <stdio.h>
+
+void leap_year(int year) {
+    if (((year%100!=0) && (year%4==0)) || (year%400==0)) {
+        printf("%d is leap year\n",year);
+    } else {
+        printf("%d is not leap year\n",year);
+    }
+}
+
+int main () {
+    int yr;
+    printf("Enter year: ");
+    scanf("%d",&yr);
+    leap_year(yr);
+}
 */
