@@ -27,13 +27,10 @@ int main()
         {7, 8, 9, 10},
         {11, 12, 13, 14}};
 
-    // Result matrix dimensions: ROWS_A x COLS_B
     int resmat[3][4];
 
-    // Multiply matrices
     multiplyMatrices(mat1, mat2, resmat);
 
-    // Print matrices
     printf("Matrix A:\n");
     for (int i = 0; i < 3; i++)
     {
