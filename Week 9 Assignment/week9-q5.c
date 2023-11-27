@@ -1,0 +1,1 @@
+// Write a C program repdigit.c to check whether a given number has one or more repeated digit(s) or not. For example, the number 28212 has a repeated digit (2), 3125653 has two repeated digits (3 and 5), and 93576 has no repeated digit. Modify the repdigit.c program so that it prints a table showing how many times each digit (if any) appears in the number.
