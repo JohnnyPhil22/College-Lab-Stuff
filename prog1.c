@@ -1,4 +1,3 @@
-/*
 // Print hello world
 #include <stdio.h>
 
@@ -116,7 +115,7 @@ int main()
     }
 }
 
-// Solve Q3 using conditional operators
+// Find age using conditional operators
 #include <stdio.h>
 
 int main()
@@ -293,25 +292,41 @@ int main()
 
 // Print all Armstrong number between 1 and 2000
 #include <stdio.h>
+#include <math.h>
 
-int main()
+int countdig(int n)
 {
-    int i = 1, ori, rem, sum;
-    while (i <= 2000)
+    int count = 0;
+    while (n != 0)
     {
-        ori = i;
-        sum = 0;
-        while (ori != 0)
-        {
-            rem = ori % 10;
-            sum += rem * rem * rem;
-            ori /= 10;
-        }
-        if (sum == i)
+        n /= 10;
+        count++;
+    }
+    return count;
+}
+
+int armstrong(int n)
+{
+    int orig = n, count = countdig(n), sum = 0;
+
+    while (n != 0)
+    {
+        int dig = n % 10;
+        sum += pow(dig, count);
+        n /= 10;
+    }
+
+    return (sum == orig);
+}
+
+void main()
+{
+    for (int i = 1; i <= 2000; i++)
+    {
+        if (armstrong(i))
         {
             printf("%d\n", i);
         }
-        i++;
     }
 }
 
@@ -417,8 +432,10 @@ int main()
     leap_year(yr);
 }
 
+// Print a pattern
 #include <stdio.h>
-int main()
+
+void main()
 {
     int i, j, diff, value;
     for (i = 1; i <= 5; i++)
@@ -443,7 +460,7 @@ int fact(int n)
     int f;
     if (n == 0 || n == 1)
     {
-        return (1);
+        return 1;
     }
     else
     {
@@ -460,61 +477,4 @@ int main()
 
     factorial = fact(num);
     printf("%d", factorial);
-}
-
-#include <stdio.h>
-#include <math.h>
-int numofdigits(int x)
-{
-    int count = 0;
-    while (x != 0)
-    {
-        x /= 10;
-        count++;
-    }
-    return count;
-}
-
-int armstrong(int x)
-{
-    int original = x, count = numofdigits(x), sum = 0, digit;
-    while (x != 0)
-    {
-        digit = x % 10;
-        sum += pow(digit, count);
-        x /= 10;
-    }
-    return sum;
-}
-
-void main()
-{
-    int m;
-    scanf("%d", &m);
-    if (armstrong(m) == m)
-    {
-        printf("AS");
-    }
-    else
-    {
-        printf("NAS");
-    }
-}
-*/
-#include <stdio.h>
-int main()
-{
-    int i, j, diff, value;
-    for (i = 1; i <= 5; i++)
-    {
-        value = i;
-        diff = 4;
-        for (j = 1; j <= i; j++)
-        {
-            printf("%d ", value);
-            value += diff;
-            diff--;
-        }
-        printf("\n");
-    }
 }
