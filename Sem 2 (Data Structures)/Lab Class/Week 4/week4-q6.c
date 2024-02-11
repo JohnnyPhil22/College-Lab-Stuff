@@ -1,4 +1,4 @@
-// Write a program to delete the first and middle node from the Singly Linked List. [Note: For this problem, consider that a Singly Linked List contains only an odd number of nodes].
+// Delete the first and middle node from the Singly Linked List. [Note: For this problem, consider that a Singly Linked List contains only an odd number of nodes].
 #include <stdio.h>
 #include <stdlib.h>
 

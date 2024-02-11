@@ -1,4 +1,4 @@
-// Write a program to create a Singly Linked List. Further, include functions in your program to insert a node at the beginning and at the end of the Singly Linked List.
+// Create a Singly Linked List. Further, include functions insert a node at the beginning and at the end of the Singly Linked List.
 #include <stdio.h>
 #include <stdlib.h>
 

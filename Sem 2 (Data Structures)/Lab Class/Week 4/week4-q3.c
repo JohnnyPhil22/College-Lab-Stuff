@@ -1,4 +1,4 @@
-// Write a program to create a Singly Linked List where elements to be inserted into the Singly Linked List are taken as input from the user. Print the address of the last node of the Singly Linked List.
+// Create a Singly Linked List where elements to be inserted into the Singly Linked List are taken as input from the user and print the address of the last node of the Singly Linked List.
 #include <stdio.h>
 #include <stdlib.h>
 

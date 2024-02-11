@@ -1,4 +1,4 @@
-// Write a program which can insert a node at user-given location within the Singly Linked List. Further, include a function in your program which can delete a node from the Singly Linked List as per the user-given location.
+// Insert a node at user-given location within the Singly Linked List. Further, include a function which can delete a node from the Singly Linked List as per the user-given location.
 #include <stdio.h>
 #include <stdlib.h>
 

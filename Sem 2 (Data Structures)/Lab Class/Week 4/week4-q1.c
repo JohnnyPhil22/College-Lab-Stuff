@@ -1,4 +1,4 @@
-// Write a program to create a Singly Linked List. Take the elements to be inserted into the  Singly Linked List as input from the user. Your program should be able to display the  created Singly Linked List using a user-defined function.
+// Create a Singly Linked List, take the elements to be inserted into the Singly Linked List as input from the user and display the created Singly Linked List using a user-defined function.
 #include <stdio.h>
 #include <stdlib.h>
 
