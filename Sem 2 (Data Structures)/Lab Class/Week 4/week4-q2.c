@@ -13,8 +13,7 @@ void main()
         for (j = 0; j < col; j++)
         {
             printf("Enter element: ");
-            scanf("%d", &elem);
-            arr[i][j] = elem;
+            scanf("%d", &arr[i][j]);
         }
     }
 
