@@ -2,14 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+struct Node
+{
     int data;
     struct Node *next;
 };
 
-struct Node* createNode(int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (newNode == NULL) {
+struct Node *createNode(int data)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    if (newNode == NULL)
+    {
         printf("Memory allocation failed\n");
         exit(1);
     }
@@ -18,22 +21,27 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-void insertAtLocation(struct Node** head, int data, int position) {
-    if (position < 1) {
+void insertAtLocation(struct Node **head, int data, int position)
+{
+    if (position < 1)
+    {
         printf("Invalid position\n");
         return;
     }
-    struct Node* newNode = createNode(data);
-    if (position == 1) {
+    struct Node *newNode = createNode(data);
+    if (position == 1)
+    {
         newNode->next = *head;
         *head = newNode;
         return;
     }
-    struct Node* temp = *head;
-    for (int i = 1; i < position - 1 && temp != NULL; i++) {
+    struct Node *temp = *head;
+    for (int i = 1; i < position - 1 && temp != NULL; i++)
+    {
         temp = temp->next;
     }
-    if (temp == NULL) {
+    if (temp == NULL)
+    {
         printf("Invalid position\n");
         return;
     }
@@ -41,24 +49,29 @@ void insertAtLocation(struct Node** head, int data, int position) {
     temp->next = newNode;
 }
 
-void deleteAtLocation(struct Node** head, int position) {
-    if (position < 1 || *head == NULL) {
+void deleteAtLocation(struct Node **head, int position)
+{
+    if (position < 1 || *head == NULL)
+    {
         printf("Invalid position or empty list\n");
         return;
     }
-    if (position == 1) {
-        struct Node* temp = *head;
+    if (position == 1)
+    {
+        struct Node *temp = *head;
         *head = temp->next;
         free(temp);
         return;
     }
-    struct Node* temp = *head;
-    struct Node* prev = NULL;
-    for (int i = 1; i < position && temp != NULL; i++) {
+    struct Node *temp = *head;
+    struct Node *prev = NULL;
+    for (int i = 1; i < position && temp != NULL; i++)
+    {
         prev = temp;
         temp = temp->next;
     }
-    if (temp == NULL) {
+    if (temp == NULL)
+    {
         printf("Invalid position\n");
         return;
     }
@@ -66,16 +79,19 @@ void deleteAtLocation(struct Node** head, int position) {
     free(temp);
 }
 
-void printList(struct Node* head) {
-    while (head != NULL) {
+void printList(struct Node *head)
+{
+    while (head != NULL)
+    {
         printf("%d -> ", head->data);
         head = head->next;
     }
     printf("NULL\n");
 }
 
-int main() {
-    struct Node* head = NULL;
+int main()
+{
+    struct Node *head = NULL;
 
     insertAtLocation(&head, 10, 1);
     insertAtLocation(&head, 20, 2);

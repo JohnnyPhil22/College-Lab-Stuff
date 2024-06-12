@@ -131,7 +131,7 @@ void printMaxAddress(struct Node *head)
     printf("Address of the node with maximum data value (%d): %p\n", maxNode->data, (void *)maxNode);
 }
 
-/// Print the address of the nodes having ‘odd value’ within nodes.
+/// Print the address of the nodes having 'odd value' within nodes.
 void printOddValueAddresses(struct Node *head)
 {
     printf("Addresses of nodes with odd data values:\n");

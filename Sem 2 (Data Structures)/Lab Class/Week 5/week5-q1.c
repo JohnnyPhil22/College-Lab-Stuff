@@ -4,30 +4,30 @@
 
 struct Node
 {
-    int info;
+    int data;
     struct Node *next;
 };
 
-void push(struct Node **head_ref, int data)
+void push(struct Node **head, int data)
 {
-    struct Node *ptr1 = (struct Node *)malloc(sizeof(struct Node));
-    ptr1->info = data;
-    ptr1->next = *head_ref;
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = *head;
 
-    if (*head_ref != NULL)
+    if (*head != NULL)
     {
-        struct Node *temp = *head_ref;
-        while (temp->next != *head_ref)
+        struct Node *temp = *head;
+        while (temp->next != *head)
         {
             temp = temp->next;
         }
-        temp->next = ptr1;
+        temp->next = newNode;
     }
     else
     {
-        ptr1->next = ptr1;
+        newNode->next = newNode;
     }
-    *head_ref = ptr1;
+    *head = newNode;
 }
 
 void print_list(struct Node *head)
@@ -35,11 +35,11 @@ void print_list(struct Node *head)
     struct Node *temp = head;
     if (head != NULL)
     {
-        do
+        while (temp != head)
         {
-            printf("%d -> ", temp->info);
+            printf("%d -> ", temp->data);
             temp = temp->next;
-        } while (temp != head);
+        }
     }
     printf("NULL\n");
 }
@@ -53,11 +53,11 @@ int inc_150(struct Node *head)
     }
     else
     {
-        do
+        while (temp != head)
         {
-            temp->info += 150;
+            temp->data += 150;
             temp = temp->next;
-        } while (temp != head);
+        }
     }
 }
 
