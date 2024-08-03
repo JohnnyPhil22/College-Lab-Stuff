@@ -1,6 +1,7 @@
-import java.util.Scanner;
-
 // Q7: Binary Search
+
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class binary_search {
     public static void main(String[] args) {
@@ -14,23 +15,35 @@ public class binary_search {
             arr[i] = s.nextInt();
         }
 
+        Arrays.sort(arr);
+
         System.out.print("Enter element to search: ");
-        int elem = s.nextInt(), l = 0, r = size - 1;
-        boolean flag = false;
+        int elem = s.nextInt(), result = binarySearch(arr, elem);
+        if (result == -1) {
+            System.out.println(elem + " is not present in array");
+        } else {
+            System.out.println(elem + " is present in array at position " + (result + 1));
+        }
+
+        System.out.print("Array: ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static int binarySearch(int[] arr, int elem) {
+        int l = 0, r = arr.length - 1;
         while (l <= r) {
-            int mid = (l + r) / 2;
-            if (elem == arr[mid]) {
-                System.out.println(elem + " is present in array at position " + (mid + 1));
-                flag = true;
-                break;
+            int mid = l + (r - l) / 2;
+            if (arr[mid] == elem) {
+                return mid;
             } else if (arr[mid] > elem) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         }
-        if (!flag) {
-            System.out.println(elem + " is not present in array");
-        }
+        return -1; // Element not found
     }
 }

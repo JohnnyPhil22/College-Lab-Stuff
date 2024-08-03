@@ -1,6 +1,6 @@
-import java.util.Scanner;
-
 // Q8: Quick sort
+
+import java.util.Scanner;
 
 public class quick_sort {
     static void swap(int[] arr, int i, int j) {

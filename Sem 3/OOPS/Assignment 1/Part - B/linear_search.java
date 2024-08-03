@@ -1,6 +1,6 @@
-import java.util.Scanner;
-
 // Q6: Linear Search
+
+import java.util.Scanner;
 
 public class linear_search {
     public static void main(String[] args) {
