@@ -61,7 +61,7 @@ public class part_b {
         System.out.print("Q9: Enter two numbers: ");
         int ll = s.nextInt(), ul = s.nextInt();
         System.out.print("    Prime numbers between " + ll + " and " + ul + " are: ");
-        for (int i = ll; i <= ul; i++) {
+        for (int i = (ll + 1); i <= ul; i++) {
             boolean isPrime = true;
             if (i <= 1) {
                 isPrime = false;
@@ -116,7 +116,7 @@ public class part_b {
 
     // Function used in Q11
     static void primeNumsBetween(int lowlim, int uplim) {
-        for (int i = lowlim; i <= uplim; i++) {
+        for (int i = (lowlim + 1); i <= uplim; i++) {
             boolean isPrime = true;
             if (i <= 1) {
                 isPrime = false;
