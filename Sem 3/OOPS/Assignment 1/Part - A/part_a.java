@@ -61,11 +61,11 @@ public class part_a {
 
         // Q7: Check if Armstrong Number
         System.out.print("Q7: Enter number: ");
-        int num4 = s.nextInt(), sum = 0, temp = num4;
+        int num4 = s.nextInt(), sum = 0, temp = num4, n = String.valueOf(num4).length();
         while (temp > 0) {
             int digit = temp % 10;
-            sum += Math.pow(digit, 3);
-            temp /= 10;
+            sum += Math.pow(digit, n);
+            temp = Math.floorDiv(temp, 10);
         }
         if (sum == num4) {
             System.out.println("    " + num4 + " is an Armstrong Number");
