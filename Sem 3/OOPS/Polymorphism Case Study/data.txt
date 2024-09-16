@@ -1,0 +1,3 @@
+Manager, John Doe, 101, 5, 10000
+Engineer, Jane Smith, 102, 50, 160
+Intern, Alex Brown, 103, 2000
