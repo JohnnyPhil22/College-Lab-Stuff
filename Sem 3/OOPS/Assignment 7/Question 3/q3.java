@@ -1,7 +1,6 @@
 // Q3: Write a class Employee having attributes: employeeID, name, department, DOB, designation, yearOfJoining, and phoneNumber. Add a function to print details of employee using employeeID. Two classes, i.e., Faculty and OfficeStaff, extends the Employee class. The faculty has a list of subjects and labs taught by them. OfficeStaff has a list of skills which stores skill such as Typing, Technician, etc. Each of the above classes has appropriate getter setter for inserting skill in the list and printing the list of skill. Demonstrate above class using a Test class which creates 5 employees of deferent types and print their details. Use Java Abstract class concept.
 import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 abstract class Employee {
     private int ID, joinYear;

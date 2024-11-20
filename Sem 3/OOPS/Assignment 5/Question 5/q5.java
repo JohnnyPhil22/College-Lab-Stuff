@@ -1,8 +1,5 @@
 // Q5: Convert paragraph to tokens to store in array without duplicates then sort it
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class q5 {
     public static void main(String[] args) {

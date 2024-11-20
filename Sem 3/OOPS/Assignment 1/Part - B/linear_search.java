@@ -1,5 +1,4 @@
 // Q6: Linear Search
-
 import java.util.Scanner;
 
 public class linear_search {

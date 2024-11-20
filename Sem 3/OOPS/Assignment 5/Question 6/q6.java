@@ -1,8 +1,5 @@
 // Q6: Convert paragraph containing continuous alphabets into fixed size tokens then remove duplicates and sort
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class q6 {
     public static void main(String[] args) {

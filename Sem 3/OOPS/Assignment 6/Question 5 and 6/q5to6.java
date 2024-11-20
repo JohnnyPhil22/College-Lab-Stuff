@@ -1,6 +1,5 @@
 import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 // Q5: Employee class with child classes Faculty and Office Staff
 class Employee {

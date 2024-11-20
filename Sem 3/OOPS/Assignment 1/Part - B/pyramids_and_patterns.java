@@ -1,5 +1,4 @@
 // Q5: Create Pyramid and Pattern
-
 import java.util.Scanner;
 
 public class pyramids_and_patterns {

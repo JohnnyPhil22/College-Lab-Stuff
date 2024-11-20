@@ -1,6 +1,5 @@
 // Q4: Sort string array of length 10 in ascending order
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class q4 {
     public static void main(String[] args) {

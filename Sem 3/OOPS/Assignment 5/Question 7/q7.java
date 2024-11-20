@@ -1,8 +1,5 @@
 // Q7: Convert paragraph containing continuous alphabets into tokens based on char occurrence then remove duplicates and sort
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class q7 {
     public static void main(String[] args) {

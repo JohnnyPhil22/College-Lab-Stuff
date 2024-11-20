@@ -1,6 +1,5 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // Q2: Base class Course with child classes UGCourse & PGCourse
 class Course {

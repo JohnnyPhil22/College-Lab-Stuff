@@ -2,8 +2,7 @@
 - An instance variable shapeName of type String
 - An abstract method area()
 - A toString method that returns the name of the shape */
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 abstract class Shape {
     private String shapeName;

@@ -1,6 +1,5 @@
 // Q1: You are required to write a base class Student having details (name, registration number, father's name, address (current address, permanent address), and contact details (phone number, email Id). UGStudent, PGStudent, and PhDStudent extend the Student class they have details about the past qualifying degree and marks. Make each attribute protected and provide suitable getter and setter to access attributes. Use the Java Abstract class concept.
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 abstract class Student {
     protected String name, fatherName, currAddress, permAddress, email;
