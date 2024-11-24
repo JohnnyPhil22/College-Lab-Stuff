@@ -528,3 +528,143 @@ int main()
         printf("%d is not a prime number.", num);
     }
 }
+
+// Obtain prime factors of entered positve number
+#include <stdio.h>
+
+int prime_factors(int num)
+{
+    int i, j, flag;
+    for (i = 2; i <= num; i++)
+    {
+        if (num % i == 0)
+        {
+            flag = 1;
+            for (j = 2; j <= i / 2; j++)
+            {
+                if (i % j == 0)
+                {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == 1)
+            {
+                printf("%d\n", i);
+            }
+        }
+    }
+}
+
+int main()
+{
+    int num;
+    printf("Enter number: ");
+    scanf("%d", &num);
+    prime_factors(num);
+}
+
+// Convert any given year into roman numerals
+#include <stdio.h>
+
+void roman_conv(int year)
+{
+    while (year != 0)
+    {
+        if (year >= 1000)
+        {
+            printf("M");
+            year -= 1000;
+        }
+        else if (year >= 500)
+        {
+            printf("D");
+            year -= 500;
+        }
+        else if (year >= 100)
+        {
+            printf("C");
+            year -= 100;
+        }
+        else if (year >= 50)
+        {
+            printf("L");
+            year -= 50;
+        }
+        else if (year >= 10)
+        {
+            printf("X");
+            year -= 10;
+        }
+        else if (year >= 5)
+        {
+            printf("V");
+            year -= 5;
+        }
+        else if (year >= 1)
+        {
+            printf("I");
+            year -= 1;
+        }
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int yr;
+    printf("Enter year: ");
+    scanf("%d", &yr);
+    roman_conv(yr);
+}
+
+// Function for binary equivalent of decimal
+#include <stdio.h>
+
+int bin_conv_dec(int n)
+{
+    int a[64], i;
+    for (i = 0; n > 0; i++)
+    {
+        a[i] = n % 2;
+        n /= 2;
+    }
+    for (i -= 1; i >= 0; i--)
+    {
+        printf("%d", a[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int num;
+    printf("Enter number: ");
+    scanf("%d", &num);
+    bin_conv_dec(num);
+}
+
+// Function to obtain the running sum of first 25 natural numbers
+#include <stdio.h>
+
+void running_sum(int n)
+{
+    int count = 0, sum = 0, square = 0;
+
+    while (++count < n)
+    {
+        square = count * count;
+        printf("Square of %d is %d\n", count, square);
+        sum += square;
+        printf("Running total is %d\n", sum);
+    }
+    printf("Overall total of squares of integers 1 through %d is %d\n", n, sum);
+}
+
+int main()
+{
+    int lim;
+    printf("Enter number of integers to use: ");
+    scanf("%d", &lim);
+    running_sum(lim);
+}
