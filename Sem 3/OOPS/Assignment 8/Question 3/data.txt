@@ -1,2 +1,0 @@
-Jonathan,20233525,Vijay,Prayagraj,Chennai,9129590905,jonathan.20233525@mnnit.ac.in
-Jatin,20233524,Ramesh,Prayagraj,Haryana,8878568848,jatin.20233524@mnnit.ac.in
