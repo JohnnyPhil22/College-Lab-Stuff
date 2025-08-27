@@ -342,7 +342,8 @@ int main()
             cin >> num;
 
             cout << "If Statement Function: " << (isEvenIfElse(num) ? "True" : "False") << endl
-                 << "Ternary Function: " << (isEvenTern(num) ? "True" : "False") << endl;
+                 << "Ternary Function: " << (isEvenTern(num) ? "True" : "False") << endl
+                 << endl;
             break;
 
         case 2:
@@ -351,7 +352,8 @@ int main()
             cin >> month;
 
             cout << "If Statement Function: " << monthFromNumberIfElse(month) << endl
-                 << "Switch Case Function: " << monthFromNumberSwitchCase(month) << endl;
+                 << "Switch Case Function: " << monthFromNumberSwitchCase(month) << endl
+                 << endl;
             break;
 
         case 3:
@@ -387,6 +389,7 @@ int main()
             f2(1000);
             f3(1000, 5);
             f4(1000, 2);
+            cout << endl;
             break;
 
         case 4:
