@@ -1,0 +1,61 @@
+Microsoft (R) Macro Assembler Version 14.44.35217.0	    10/11/25 17:30:06
+test.asm						     Page 1 - 1
+
+
+				.586
+				.MODEL FLAT
+
+				.STACK 4096
+
+ 00000000			.DATA
+ 00000000 00000019		array1  DWORD  25, 47, 15, 50, 3
+	   0000002F
+	   0000000F
+	   00000032
+	   00000003
+
+ 00000000			.CODE
+ 00000000			_MainProc PROC
+ 00000000  A1 00000004 R		mov eax, array1[4]
+ 00000005			_MainProc ENDP
+				END
+Microsoft (R) Macro Assembler Version 14.44.35217.0	    10/11/25 17:30:06
+test.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000014 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000005 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+_MainProc  . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000005 Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+array1 . . . . . . . . . . . . .	DWord	 00000000 _DATA	
+
+	   0 Warnings
+	   0 Errors
