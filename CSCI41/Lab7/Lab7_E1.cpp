@@ -37,32 +37,39 @@ public:
 
     void Enqueue(double x)
     {
-        if (!IsFull())
-        {
-            rear = (rear + 1) % capacity;
-            q[rear] = x;
-            size++;
-        }
-        else
+        if (IsFull())
         {
             cout << "Queue Overflow" << endl;
+            return;
         }
+        if (IsEmpty())
+        {
+            front = 0;
+            rear = -1;
+        }
+        rear += 1;
+        q[rear] = x;
+        size += 1;
     }
 
     double Dequeue()
     {
-        if (!IsEmpty())
-        {
-            double item = q[front];
-            front = (front + 1) % capacity;
-            size--;
-            return item;
-        }
-        else
+        if (IsEmpty())
         {
             cout << "Queue Underflow" << endl;
             return INT_MIN;
         }
+        double item = q[front];
+        front += 1;
+        size -= 1;
+
+        // When queue becomes empty, reset indices so it can be reused linearly.
+        if (size == 0)
+        {
+            front = 0;
+            rear = -1;
+        }
+        return item;
     }
 
     double Front()
@@ -89,9 +96,14 @@ public:
     {
         cout << "Max capacity: " << capacity << endl
              << "Current size: " << size << endl;
-        for (int i = 0; i < size; i++)
+        if (IsEmpty())
         {
-            cout << "Element " << i << ": " << q[(front + i) % capacity] << endl;
+            cout << "Empty Queue" << endl;
+            return;
+        }
+        for (int i = front; i <= rear; ++i)
+        {
+            cout << "Element " << (i - front) << ": " << q[i] << endl;
         }
         cout << endl;
     }
