@@ -1,10 +1,6 @@
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/27/25 18:49:35
+Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/29/25 18:47:12
 example.asm						     Page 1 - 1
 
-
-				; Example assembly language program -- adds two numbers
-				; Author:  R. Detmer
-				; Date:    1/2008
 
 				.586
 				.MODEL FLAT
@@ -18,30 +14,36 @@ example.asm						     Page 1 - 1
 				.STACK 4096
 
  00000000			.DATA
- 00000000 00000000		number1 DWORD   ?
- 00000004 00000000		number2 DWORD   ?
- 00000008 45 6E 74 65 72	prompt1 BYTE    "Enter first number", 0
+ 00000000 00000000		number1     DWORD   ?
+ 00000004 00000000		number2     DWORD   ?
+ 00000008 45 6E 74 65 72	prompt1     BYTE    "Enter first number", 0
 	   20 66 69 72 73
 	   74 20 6E 75 6D
 	   62 65 72 00
- 0000001B 45 6E 74 65 72	prompt2 BYTE    "Enter second number", 0
+ 0000001B 45 6E 74 65 72	prompt2     BYTE    "Enter second number", 0
 	   20 73 65 63 6F
 	   6E 64 20 6E 75
 	   6D 62 65 72 00
- 0000002F  00000028 [		string  BYTE    40 DUP (?)
+ 0000002F  00000028 [		string      BYTE    40 DUP (?)
 	    00
 	   ]
- 00000057 54 68 65 20 73	resultLbl BYTE  "The sum is", 0
+ 00000057 54 68 65 20 73	resultLbl   BYTE  "The sum is", 0
 	   75 6D 20 69 73
 	   00
- 00000062  0000000B [		sum     BYTE    11 DUP (?), 0
+ 00000062  0000000B [		sum         BYTE    11 DUP (?), 0
 	    00
 	   ] 00
+ 0000006E 00000001		arr1        DWORD   1, 3, 5, 7, 9, 11
+	   00000003
+	   00000005
+	   00000007
+	   00000009
+	   0000000B
 
  00000000			.CODE
  00000000			myPow PROC      ; Save x^y to EAX
- 00000000  55			    push EBP
- 00000001  8B EC		    mov EBP, ESP        ; ENTRY CODE
+ 00000000  55			    push EBP        ; ENTRY CODE
+ 00000001  8B EC		    mov EBP, ESP
 
  00000003  8B 5D 08		    mov EBX, DWORD PTR [EBP + 8]        ; get exponent y
  00000006  8B 4D 0C		    mov ECX, DWORD PTR [EBP + 12]       ; get base x
@@ -56,8 +58,8 @@ example.asm						     Page 1 - 1
  00000014			myPow ENDP
 
  00000014			Comp2 PROC     ; Compare two numbers
- 00000014  55			    push EBP
- 00000015  8B EC		    mov EBP, ESP        ; ENTRY CODE
+ 00000014  55			    push EBP        ; ENTRY CODE
+ 00000015  8B EC		    mov EBP, ESP
 
  00000017  8B 5D 08		    mov EBX, DWORD PTR [EBP + 8]        ; get number a
  0000001A  8B 4D 0C		    mov ECX, DWORD PTR [EBP + 12]       ; get number b
@@ -78,8 +80,8 @@ example.asm						     Page 1 - 1
  00000038			Comp2 ENDP
 
  00000038			Comp3 PROC     ; Compare three numbers
- 00000038  55			    push EBP
- 00000039  8B EC		    mov EBP, ESP        ; ENTRY CODE
+ 00000038  55			    push EBP        ; ENTRY CODE
+ 00000039  8B EC		    mov EBP, ESP
 
  0000003B  66| 8B 45 08		    mov AX, [EBP + 8]         ; get number a
  0000003F  66| 8B 5D 0A		    mov BX, [EBP + 10]        ; get number b
@@ -95,13 +97,13 @@ example.asm						     Page 1 - 1
  00000054  66| 8B C1		    mov AX, CX
 				    
  00000057			    A_Max:
- 00000057  5D			        pop EBP
- 00000058  C3			        ret         ; EXIT CODE
+ 00000057  5D			        pop EBP         ; EXIT CODE
+ 00000058  C3			        ret
  00000059			Comp3 ENDP
 
- 00000059			factNum PROC
- 00000059  55			    push EBP
- 0000005A  8B EC		    mov EBP, ESP        ; ENTRY CODE
+ 00000059			factNum PROC    ; Calculate factorial of n
+ 00000059  55			    push EBP        ; ENTRY CODE
+ 0000005A  8B EC		    mov EBP, ESP
 
  0000005C  83 7D 08 01		    cmp DWORD PTR [EBP + 8], 1
  00000060  7F 07		    jg RECURSE
@@ -118,47 +120,95 @@ example.asm						     Page 1 - 1
  00000077  F7 E3		        mul EBX
 
  00000079			    EXIT:
- 00000079  5D			        pop EBP
- 0000007A  C3			        ret         ; EXIT CODE
+ 00000079  5D			        pop EBP         ; EXIT CODE
+ 0000007A  C3			        ret
  0000007B			factNum ENDP
 
- 0000007B			_MainProc PROC
- 0000007B  6A 03		        pushd 3
- 0000007D  6A 02		        pushd 2
- 0000007F  E8 FFFFFF7C		        call myPow
- 00000084  83 C4 08		        add ESP, 8
+ 0000007B			myAvg PROC      ; Calculate average of array of numbers
+ 0000007B  55			    push EBP        ; ENTRY CODE
+ 0000007C  8B EC		    mov EBP, ESP
 
- 00000087  66| 6A 03		        pushw 3
- 0000008A  66| 6A 02		        pushw 2
- 0000008D  66| 6A 01		        pushw 1
- 00000090  E8 FFFFFFA3		        call Comp3
- 00000095  83 C4 06		        add ESP, 6
+ 0000007E  53			    push EBX
+ 0000007F  51			    push ECX
 
- 00000098  6A 03		        pushd 3
- 0000009A  E8 FFFFFFBA		        call factNum
- 0000009F  83 C4 04		        add ESP, 4
+ 00000080  8B 5D 08		    mov EBX, DWORD PTR [EBP + 8]        ; get first number
+ 00000083  8B 4D 0C		    mov ECX, DWORD PTR [EBP + 12]       ; get second number
+ 00000086  B8 00000000		    mov EAX, 0      ; initialize sum to 0
+ 0000008B  49			    dec ECX
 
-				        COMMENT #
-				        input   prompt1, string, 40      ; read ASCII characters
-				        atod    string          ; convert to integer
-				        mov     number1, eax    ; store in memory
+ 0000008C			    Begin_Avg_Calc:
+ 0000008C  03 44 0B 04		        add EAX, DWORD PTR[EBX+4+ECX] ; add array element to sum
+ 00000090  49			        dec ECX
+ 00000091  83 F9 00		        cmp ECX, 0
+ 00000094  7C 02		        jl Done
+ 00000096  EB F4		        jmp Begin_Avg_Calc
 
-				        input   prompt2, string, 40      ; repeat for second number
-				        atod    string
-				        mov     number2, eax
+ 00000098			    Done:
+ 00000098  99			        cdq			 ; extend EAX to EDX:EAX for division
+ 00000099  F7 75 0C		        div DWORD PTR [EBP + 12]      ; divide sum by count
+				    
+ 0000009C  59			    pop ECX
+ 0000009D  5B			    pop EBX
+ 0000009E  5D			    pop EBP     ; EXIT CODE
+ 0000009F  C3			    ret
+ 000000A0			myAvg ENDP
+
+				add3    MACRO p1, p2, p3        ; Macro to add three numbers and store in p1
+				        push EDX
+				        mov EDX, p1
+				        add EDX, p2
+				        add EDX, p3
+				        mov p1, EDX
+				        ENDM
+
+ 000000A0			_MainProc PROC
+				    ; Example code for adding two numbers from user input (TB material)
+				    input   prompt1, string, 40      ; read ASCII characters
+				    atod    string          ; convert to integer
+ 000000CD  A3 00000000 R	    mov     number1, EAX    ; store in memory
+
+				    input   prompt2, string, 40      ; repeat for second number
+				    atod    string
+ 000000FF  A3 00000004 R	    mov     number2, EAX
 				        
-				        mov     eax, number1    ; first number to EAX
-				        add     eax, number2    ; add second number
-				        dtoa    sum, eax        ; convert to ASCII characters
-				        output  resultLbl, sum          ; output label and sum
-				        #
+ 00000104  A1 00000000 R	    mov     EAX, number1    ; first number to EAX
+ 00000109  03 05 00000004 R	    add     EAX, number2    ; add second number
+				    dtoa    sum, EAX        ; convert to ASCII characters
+				    output  resultLbl, sum          ; output label and sum
 
- 000000A2  B8 00000000		        mov     eax, 0  ; exit with return code 0
- 000000A7  C3			        ret
- 000000A8			_MainProc ENDP
+				    ; Example code for x^y proc
+ 00000140  6A 03		    pushd 3         ; exponent
+ 00000142  6A 02		    pushd 2         ; base
+ 00000144  E8 FFFFFEB7		    call myPow
+ 00000149  83 C4 08		    add ESP, 8
+
+				    ; Example code for comparing three numbers proc
+ 0000014C  66| 6A 03		    pushw 3         ; third number 
+ 0000014F  66| 6A 02		    pushw 2         ; second number
+ 00000152  66| 6A 01		    pushw 1         ; first number
+ 00000155  E8 FFFFFEDE		    call Comp3
+ 0000015A  83 C4 06		    add ESP, 6
+
+				    ; Example code for factorial proc
+ 0000015D  6A 03		    pushd 3         ; number to factorial
+ 0000015F  E8 FFFFFEF5		    call factNum
+ 00000164  83 C4 04		    add ESP, 4
+
+				    ; Example code for average of array proc
+ 00000167  6A 06		    pushd 6         ; number of elements
+ 00000169  8D 0D 0000006E R	    lea ECX, arr1   ; address of array
+ 0000016F  51			    push ECX        ; array address
+ 00000170  E8 FFFFFF06		    call myAvg
+ 00000175  83 C4 08		    add ESP, 8
+
+				    ; Example usage of add3 macro
+				    add3    EAX, number1, 6
+
+ 00000186  B8 00000000		    mov     EAX, 0      ; exit with return code 0
+ 0000018B  C3			    ret
+ 0000018C			_MainProc ENDP
 				END                             ; end of source code
-
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/27/25 18:49:35
+Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/29/25 18:47:12
 example.asm						     Symbols 2 - 1
 
 
@@ -168,6 +218,7 @@ Macros:
 
                 N a m e                 Type
 
+add3 . . . . . . . . . . . . . .	Proc
 atod . . . . . . . . . . . . . .	Proc
 atow . . . . . . . . . . . . . .	Proc
 dtoa . . . . . . . . . . . . . .	Proc
@@ -182,8 +233,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 0000006E Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 000000A8 Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000086 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000018C Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -197,10 +248,13 @@ Comp2  . . . . . . . . . . . . .	P Near	 00000014 _TEXT	Length= 00000024 Public
 Comp3  . . . . . . . . . . . . .	P Near	 00000038 _TEXT	Length= 00000021 Public
   Chk_AC . . . . . . . . . . . .	L Near	 0000004F _TEXT	
   A_Max  . . . . . . . . . . . .	L Near	 00000057 _TEXT	
-_MainProc  . . . . . . . . . . .	P Near	 0000007B _TEXT	Length= 0000002D Public
+_MainProc  . . . . . . . . . . .	P Near	 000000A0 _TEXT	Length= 000000EC Public
 factNum  . . . . . . . . . . . .	P Near	 00000059 _TEXT	Length= 00000022 Public
   RECURSE  . . . . . . . . . . .	L Near	 00000069 _TEXT	
   EXIT . . . . . . . . . . . . .	L Near	 00000079 _TEXT	
+myAvg  . . . . . . . . . . . . .	P Near	 0000007B _TEXT	Length= 00000025 Public
+  Begin_Avg_Calc . . . . . . . .	L Near	 0000008C _TEXT	
+  Done . . . . . . . . . . . . .	L Near	 00000098 _TEXT	
 myPow  . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000014 Public
   LBEGIN . . . . . . . . . . . .	L Near	 0000000E _TEXT	
 
@@ -220,6 +274,7 @@ Symbols:
 @stack . . . . . . . . . . . . .	Text   	 FLAT
 _getInput  . . . . . . . . . . .	L Near	 00000000 FLAT	External
 _showOutput  . . . . . . . . . .	L Near	 00000000 FLAT	External
+arr1 . . . . . . . . . . . . . .	DWord	 0000006E _DATA	
 atodproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
 atowproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
 dtoaproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External

@@ -1,6 +1,6 @@
  windows32
 
- Timestamp is 69002076 (Mon Oct 27 18:46:30 2025)
+ Timestamp is 6902c37c (Wed Oct 29 18:46:36 2025)
 
  Preferred load address is 00400000
 
@@ -80,11 +80,6 @@
  0002:000009c0       _WinMain@16                004119c0 f   framework.obj
  0002:00000a10       _getInput                  00411a10 f   framework.obj
  0002:00000ae0       _showOutput                00411ae0 f   framework.obj
- 0002:00000b40       myPow                      00411b40 f   example.obj
- 0002:00000b54       Comp2                      00411b54 f   example.obj
- 0002:00000b78       Comp3                      00411b78 f   example.obj
- 0002:00000b99       factNum                    00411b99 f   example.obj
- 0002:00000bbb       _MainProc                  00411bbb f   example.obj
  0002:00000c30       wtoaproc                   00411c30 f   io.obj
  0002:00000c9d       dtoaproc                   00411c9d f   io.obj
  0002:00000d18       atowproc                   00411d18 f   io.obj
@@ -282,6 +277,12 @@
  0002:00004870       __is_c_termination_complete 00415870 f   MSVCRTD:ucrt_stubs.obj
  0002:00004880       __filter_x86_sse2_floating_point_exception 00415880 f   MSVCRTD:x86_exception_filter.obj
  0002:00004880       __filter_x86_sse2_floating_point_exception_default 00415880 f   MSVCRTD:x86_exception_filter.obj
+ 0002:000049c0       myPow                      004159c0 f   example.obj
+ 0002:000049d4       Comp2                      004159d4 f   example.obj
+ 0002:000049f8       Comp3                      004159f8 f   example.obj
+ 0002:00004a19       factNum                    00415a19 f   example.obj
+ 0002:00004a3b       myAvg                      00415a3b f   example.obj
+ 0002:00004a60       _MainProc                  00415a60 f   example.obj
  0003:00000000       ___xc_a                    00417000     MSVCRTD:initializers.obj
  0003:00000208       ___xc_z                    00417208     MSVCRTD:initializers.obj
  0003:0000030c       ___xi_a                    0041730c     MSVCRTD:initializers.obj
@@ -534,7 +535,6 @@
  0000:fffe2000       .debug$S                   00400000     vcruntimed:VCRUNTIME140D.dll
  0000:fffe4004       __guard_fids__             00400004     MSVCRTD:exe_winmain.obj
  0000:fffe4008       __guard_fids__             00400008     MSVCRTD:exe_winmain.obj
- 0002:00000b40       $$000000                   00411b40     example.obj
  0002:00000c30       $$000000                   00411c30     io.obj
  0002:000014f0       ?pre_c_initialization@@YAHXZ 004124f0 f   MSVCRTD:exe_winmain.obj
  0002:000015e0       ?post_pgo_initialization@@YAHXZ 004125e0 f   MSVCRTD:exe_winmain.obj
@@ -558,6 +558,7 @@
  0002:00003650       ?GetPdbDll@@YAPAUHINSTANCE__@@XZ 00414650 f   MSVCRTD:pdblkup.obj
  0002:000037f0       ?GetPdbDllFromInstallPath@@YAPAUHINSTANCE__@@XZ 004147f0 f   MSVCRTD:pdblkup.obj
  0002:00003a90       ?GetPdbDllPathFromFilePath@@YAHPB_WPA_WI@Z 00414a90 f   MSVCRTD:pdblkup.obj
+ 0002:000049c0       $$000000                   004159c0     example.obj
  0003:00000104       ?pre_cpp_initializer@@3P6AXXZA 00417104     MSVCRTD:exe_winmain.obj
  0003:00000410       ?pre_c_initializer@@3P6AHXZA 00417410     MSVCRTD:exe_winmain.obj
  0003:00000514       ?post_pgo_initializer@@3P6AHXZA 00417514     MSVCRTD:exe_winmain.obj
@@ -585,6 +586,7 @@
  0004:0000002f       string                     0041a02f     example.obj
  0004:00000057       resultLbl                  0041a057     example.obj
  0004:00000062       sum                        0041a062     example.obj
+ 0004:0000006e       arr1                       0041a06e     example.obj
  0004:00000260       _buf                       0041a260     framework.obj
  0004:00000360       _inputLabel                0041a360     framework.obj
  0004:000004c8       _GS_ExceptionRecord        0041a4c8     MSVCRTD:gs_report.obj
