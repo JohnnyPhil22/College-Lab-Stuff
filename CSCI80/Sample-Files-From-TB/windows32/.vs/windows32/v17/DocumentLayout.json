@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "windows32\\example.asm",
               "ToolTip": "C:\\Users\\Jonathan Philips\\Coding\\College-Lab-Stuff\\CSCI80\\Sample-Files-From-TB\\windows32\\windows32\\example.asm",
               "RelativeToolTip": "windows32\\example.asm",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAiwJsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-10-12T00:33:39.53Z",
               "IsPinned": true,
@@ -45,8 +45,7 @@
               "ViewState": "AgIAAJsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-10-28T01:14:36.82Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",

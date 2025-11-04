@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/29/25 18:47:12
+Microsoft (R) Macro Assembler Version 14.44.35219.0	    11/03/25 21:45:51
 example.asm						     Page 1 - 1
 
 
@@ -161,54 +161,90 @@ example.asm						     Page 1 - 1
 				        mov p1, EDX
 				        ENDM
 
- 000000A0			_MainProc PROC
+ 000000A0			myPerm PROC         ; Calculate permutation nPr, two DWORD params
+ 000000A0  55			    push EBP        ; ENTRY CODE
+ 000000A1  8B EC		    mov EBP, ESP
+
+ 000000A3  53			    push EBX
+
+ 000000A4  8B 5D 08		    mov EBX, DWORD PTR [EBP + 8]        ; get n
+ 000000A7  8B 4D 0C		    mov ECX, DWORD PTR [EBP + 12]       ; get r
+ 000000AA  B8 00000001		    mov EAX, 1          ; init result = 1
+				    
+ 000000AF  E3 0D		    jecxz End_Loop     ; if r == 0, skip loop
+
+ 000000B1  3B CB		    cmp ECX, EBX
+ 000000B3  7F 07		    jg R_Greater_N        ; if r > n, skip loop
+
+ 000000B5			    Perm_Loop:
+ 000000B5  F7 E3		        mul EBX         ; result *= n
+ 000000B7  4B			        dec EBX         ; n--
+ 000000B8  E2 FB		        loop Perm_Loop
+ 000000BA  EB 02		        jmp End_Loop
+
+ 000000BC			    R_Greater_N:
+ 000000BC  33 C0		        xor EAX, EAX    ; result = 0
+
+ 000000BE			    End_Loop:
+ 000000BE  5B			        pop EBX
+ 000000BF  5D			        pop EBP     ; EXIT CODE
+ 000000C0  C3			        ret
+ 000000C1			myPerm ENDP
+
+ 000000C1			_MainProc PROC
 				    ; Example code for adding two numbers from user input (TB material)
 				    input   prompt1, string, 40      ; read ASCII characters
 				    atod    string          ; convert to integer
- 000000CD  A3 00000000 R	    mov     number1, EAX    ; store in memory
+ 000000EE  A3 00000000 R	    mov     number1, EAX    ; store in memory
 
 				    input   prompt2, string, 40      ; repeat for second number
 				    atod    string
- 000000FF  A3 00000004 R	    mov     number2, EAX
+ 00000120  A3 00000004 R	    mov     number2, EAX
 				        
- 00000104  A1 00000000 R	    mov     EAX, number1    ; first number to EAX
- 00000109  03 05 00000004 R	    add     EAX, number2    ; add second number
+ 00000125  A1 00000000 R	    mov     EAX, number1    ; first number to EAX
+ 0000012A  03 05 00000004 R	    add     EAX, number2    ; add second number
 				    dtoa    sum, EAX        ; convert to ASCII characters
 				    output  resultLbl, sum          ; output label and sum
 
 				    ; Example code for x^y proc
- 00000140  6A 03		    pushd 3         ; exponent
- 00000142  6A 02		    pushd 2         ; base
- 00000144  E8 FFFFFEB7		    call myPow
- 00000149  83 C4 08		    add ESP, 8
+ 00000161  6A 03		    pushd 3         ; exponent
+ 00000163  6A 02		    pushd 2         ; base
+ 00000165  E8 FFFFFE96		    call myPow
+ 0000016A  83 C4 08		    add ESP, 8
 
 				    ; Example code for comparing three numbers proc
- 0000014C  66| 6A 03		    pushw 3         ; third number 
- 0000014F  66| 6A 02		    pushw 2         ; second number
- 00000152  66| 6A 01		    pushw 1         ; first number
- 00000155  E8 FFFFFEDE		    call Comp3
- 0000015A  83 C4 06		    add ESP, 6
+ 0000016D  66| 6A 03		    pushw 3         ; third number 
+ 00000170  66| 6A 02		    pushw 2         ; second number
+ 00000173  66| 6A 01		    pushw 1         ; first number
+ 00000176  E8 FFFFFEBD		    call Comp3
+ 0000017B  83 C4 06		    add ESP, 6
 
 				    ; Example code for factorial proc
- 0000015D  6A 03		    pushd 3         ; number to factorial
- 0000015F  E8 FFFFFEF5		    call factNum
- 00000164  83 C4 04		    add ESP, 4
+ 0000017E  6A 03		    pushd 3         ; number to factorial
+ 00000180  E8 FFFFFED4		    call factNum
+ 00000185  83 C4 04		    add ESP, 4
 
 				    ; Example code for average of array proc
- 00000167  6A 06		    pushd 6         ; number of elements
- 00000169  8D 0D 0000006E R	    lea ECX, arr1   ; address of array
- 0000016F  51			    push ECX        ; array address
- 00000170  E8 FFFFFF06		    call myAvg
- 00000175  83 C4 08		    add ESP, 8
+ 00000188  6A 06		    pushd 6         ; number of elements
+ 0000018A  8D 0D 0000006E R	    lea ECX, arr1   ; address of array
+ 00000190  51			    push ECX        ; array address
+ 00000191  E8 FFFFFEE5		    call myAvg
+ 00000196  83 C4 08		    add ESP, 8
 
 				    ; Example usage of add3 macro
 				    add3    EAX, number1, 6
 
- 00000186  B8 00000000		    mov     EAX, 0      ; exit with return code 0
- 0000018B  C3			    ret
- 0000018C			_MainProc ENDP
+				    ; Example usage of permutation proc
+ 000001A7  6A 02		    pushd 2         ; r
+ 000001A9  6A 06		    pushd 6         ; n
+ 000001AB  E8 FFFFFEF0		    call myPerm
+ 000001B0  83 C4 08		    add ESP, 8
+
+ 000001B3  B8 00000000		    mov     EAX, 0      ; exit with return code 0
+ 000001B8  C3			    ret
+ 000001B9			_MainProc ENDP
 				END                             ; end of source code
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    10/29/25 18:47:12
+Microsoft (R) Macro Assembler Version 14.44.35219.0	    11/03/25 21:45:51
 example.asm						     Symbols 2 - 1
 
 
@@ -234,7 +270,7 @@ Segments and Groups:
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
 _DATA  . . . . . . . . . . . . .	32 Bit	 00000086 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000018C Para	  Public  'CODE'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 000001B9 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -248,13 +284,17 @@ Comp2  . . . . . . . . . . . . .	P Near	 00000014 _TEXT	Length= 00000024 Public
 Comp3  . . . . . . . . . . . . .	P Near	 00000038 _TEXT	Length= 00000021 Public
   Chk_AC . . . . . . . . . . . .	L Near	 0000004F _TEXT	
   A_Max  . . . . . . . . . . . .	L Near	 00000057 _TEXT	
-_MainProc  . . . . . . . . . . .	P Near	 000000A0 _TEXT	Length= 000000EC Public
+_MainProc  . . . . . . . . . . .	P Near	 000000C1 _TEXT	Length= 000000F8 Public
 factNum  . . . . . . . . . . . .	P Near	 00000059 _TEXT	Length= 00000022 Public
   RECURSE  . . . . . . . . . . .	L Near	 00000069 _TEXT	
   EXIT . . . . . . . . . . . . .	L Near	 00000079 _TEXT	
 myAvg  . . . . . . . . . . . . .	P Near	 0000007B _TEXT	Length= 00000025 Public
   Begin_Avg_Calc . . . . . . . .	L Near	 0000008C _TEXT	
   Done . . . . . . . . . . . . .	L Near	 00000098 _TEXT	
+myPerm . . . . . . . . . . . . .	P Near	 000000A0 _TEXT	Length= 00000021 Public
+  Perm_Loop  . . . . . . . . . .	L Near	 000000B5 _TEXT	
+  R_Greater_N  . . . . . . . . .	L Near	 000000BC _TEXT	
+  End_Loop . . . . . . . . . . .	L Near	 000000BE _TEXT	
 myPow  . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000014 Public
   LBEGIN . . . . . . . . . . . .	L Near	 0000000E _TEXT	
 

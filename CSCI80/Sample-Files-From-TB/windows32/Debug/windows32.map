@@ -1,6 +1,6 @@
  windows32
 
- Timestamp is 6902c37c (Wed Oct 29 18:46:36 2025)
+ Timestamp is 690992dc (Mon Nov  3 21:45:00 2025)
 
  Preferred load address is 00400000
 
@@ -282,7 +282,8 @@
  0002:000049f8       Comp3                      004159f8 f   example.obj
  0002:00004a19       factNum                    00415a19 f   example.obj
  0002:00004a3b       myAvg                      00415a3b f   example.obj
- 0002:00004a60       _MainProc                  00415a60 f   example.obj
+ 0002:00004a60       myPerm                     00415a60 f   example.obj
+ 0002:00004a81       _MainProc                  00415a81 f   example.obj
  0003:00000000       ___xc_a                    00417000     MSVCRTD:initializers.obj
  0003:00000208       ___xc_z                    00417208     MSVCRTD:initializers.obj
  0003:0000030c       ___xi_a                    0041730c     MSVCRTD:initializers.obj

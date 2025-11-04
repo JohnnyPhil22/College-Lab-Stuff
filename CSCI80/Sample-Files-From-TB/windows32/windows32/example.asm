@@ -136,6 +136,36 @@ add3    MACRO p1, p2, p3        ; Macro to add three numbers and store in p1
         mov p1, EDX
         ENDM
 
+myPerm PROC         ; Calculate permutation nPr, two DWORD params
+    push EBP        ; ENTRY CODE
+    mov EBP, ESP
+
+    push EBX
+
+    mov EBX, DWORD PTR [EBP + 8]        ; get n
+    mov ECX, DWORD PTR [EBP + 12]       ; get r
+    mov EAX, 1          ; init result = 1
+    
+    jecxz End_Loop     ; if r == 0, skip loop
+
+    cmp ECX, EBX
+    jg R_Greater_N        ; if r > n, skip loop
+
+    Perm_Loop:
+        mul EBX         ; result *= n
+        dec EBX         ; n--
+        loop Perm_Loop
+        jmp End_Loop
+
+    R_Greater_N:
+        xor EAX, EAX    ; result = 0
+
+    End_Loop:
+        pop EBX
+        pop EBP     ; EXIT CODE
+        ret
+myPerm ENDP
+
 _MainProc PROC
     ; Example code for adding two numbers from user input (TB material)
     input   prompt1, string, 40      ; read ASCII characters
@@ -178,6 +208,12 @@ _MainProc PROC
 
     ; Example usage of add3 macro
     add3    EAX, number1, 6
+
+    ; Example usage of permutation proc
+    pushd 2         ; r
+    pushd 6         ; n
+    call myPerm
+    add ESP, 8
 
     mov     EAX, 0      ; exit with return code 0
     ret
