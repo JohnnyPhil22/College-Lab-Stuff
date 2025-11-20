@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    11/03/25 21:45:51
+Microsoft (R) Macro Assembler Version 14.44.35220.0	    11/17/25 18:46:46
 example.asm						     Page 1 - 1
 
 
@@ -191,60 +191,96 @@ example.asm						     Page 1 - 1
  000000C0  C3			        ret
  000000C1			myPerm ENDP
 
- 000000C1			_MainProc PROC
+ 000000C1			myPalin PROC        ; Procedure to find out if string = palindrome or not
+				    lea ESI, str
+example.asm(170) : error A2008:syntax error : str
+ 000000C1  BF 00000000		    mov EDI, 0
+ 000000C6			    L1:
+ 000000C6  80 3E 00		        cmp BYTE PTR [ESI], 0
+				        jz L1END
+example.asm(174) : error A2006:undefined symbol : L1END
+ 000000C9  46			        inc ESI
+ 000000CA  47			        inc EDI
+ 000000CB  EB F9		        jmp L1
+ 000000D6			    J1END:
+				        cmp EDI, str
+example.asm(179) : error A2008:syntax error : str
+ 000000D6  8B FE		        mov EDI, ESI
+ 000000D8  03 FA		        add EDI, EDX
+ 000000DA  4F			        dec EDI
+ 000000DB			    L2:
+ 000000DB  3B F7		        cmp ESI, EDI
+ 000000DD  7D 0A		        jge L2END
+ 000000DF  8A 07		        mov AL, BYTE PTR [EDI]
+ 000000E1  3A 07		        cmp AL, BYTE PTR [EDI]
+ 000000E3  75 04		        jnz L2END
+ 000000E5  46			        inc ESI
+ 000000E6  4F			        dec EDI
+ 000000E7  EB F2		        jmp L2
+ 000000E9			    L2END:
+ 000000E9  3B F7		        cmp ESI, EDI
+ 000000EB  7D 02		        jge LYES
+ 000000ED  75 00		        jnz LNO
+ 000000EF			    LYES:
+				        ; Palindrome = true
+ 000000EF			    LNO:
+				        ; Palindrome = no
+ 000000EF			myPalin ENDP
+
+ 000000EF			_MainProc PROC
 				    ; Example code for adding two numbers from user input (TB material)
 				    input   prompt1, string, 40      ; read ASCII characters
 				    atod    string          ; convert to integer
- 000000EE  A3 00000000 R	    mov     number1, EAX    ; store in memory
+ 0000011C  A3 00000000 R	    mov     number1, EAX    ; store in memory
 
 				    input   prompt2, string, 40      ; repeat for second number
 				    atod    string
- 00000120  A3 00000004 R	    mov     number2, EAX
+ 0000014E  A3 00000004 R	    mov     number2, EAX
 				        
- 00000125  A1 00000000 R	    mov     EAX, number1    ; first number to EAX
- 0000012A  03 05 00000004 R	    add     EAX, number2    ; add second number
+ 00000153  A1 00000000 R	    mov     EAX, number1    ; first number to EAX
+ 00000158  03 05 00000004 R	    add     EAX, number2    ; add second number
 				    dtoa    sum, EAX        ; convert to ASCII characters
 				    output  resultLbl, sum          ; output label and sum
 
 				    ; Example code for x^y proc
- 00000161  6A 03		    pushd 3         ; exponent
- 00000163  6A 02		    pushd 2         ; base
- 00000165  E8 FFFFFE96		    call myPow
- 0000016A  83 C4 08		    add ESP, 8
+ 0000018F  6A 03		    pushd 3         ; exponent
+ 00000191  6A 02		    pushd 2         ; base
+ 00000193  E8 FFFFFE68		    call myPow
+ 00000198  83 C4 08		    add ESP, 8
 
 				    ; Example code for comparing three numbers proc
- 0000016D  66| 6A 03		    pushw 3         ; third number 
- 00000170  66| 6A 02		    pushw 2         ; second number
- 00000173  66| 6A 01		    pushw 1         ; first number
- 00000176  E8 FFFFFEBD		    call Comp3
- 0000017B  83 C4 06		    add ESP, 6
+ 0000019B  66| 6A 03		    pushw 3         ; third number 
+ 0000019E  66| 6A 02		    pushw 2         ; second number
+ 000001A1  66| 6A 01		    pushw 1         ; first number
+ 000001A4  E8 FFFFFE8F		    call Comp3
+ 000001A9  83 C4 06		    add ESP, 6
 
 				    ; Example code for factorial proc
- 0000017E  6A 03		    pushd 3         ; number to factorial
- 00000180  E8 FFFFFED4		    call factNum
- 00000185  83 C4 04		    add ESP, 4
+ 000001AC  6A 03		    pushd 3         ; number to factorial
+ 000001AE  E8 FFFFFEA6		    call factNum
+ 000001B3  83 C4 04		    add ESP, 4
 
 				    ; Example code for average of array proc
- 00000188  6A 06		    pushd 6         ; number of elements
- 0000018A  8D 0D 0000006E R	    lea ECX, arr1   ; address of array
- 00000190  51			    push ECX        ; array address
- 00000191  E8 FFFFFEE5		    call myAvg
- 00000196  83 C4 08		    add ESP, 8
+ 000001B6  6A 06		    pushd 6         ; number of elements
+ 000001B8  8D 0D 0000006E R	    lea ECX, arr1   ; address of array
+ 000001BE  51			    push ECX        ; array address
+ 000001BF  E8 FFFFFEB7		    call myAvg
+ 000001C4  83 C4 08		    add ESP, 8
 
 				    ; Example usage of add3 macro
 				    add3    EAX, number1, 6
 
 				    ; Example usage of permutation proc
- 000001A7  6A 02		    pushd 2         ; r
- 000001A9  6A 06		    pushd 6         ; n
- 000001AB  E8 FFFFFEF0		    call myPerm
- 000001B0  83 C4 08		    add ESP, 8
+ 000001D5  6A 02		    pushd 2         ; r
+ 000001D7  6A 06		    pushd 6         ; n
+ 000001D9  E8 FFFFFEC2		    call myPerm
+ 000001DE  83 C4 08		    add ESP, 8
 
- 000001B3  B8 00000000		    mov     EAX, 0      ; exit with return code 0
- 000001B8  C3			    ret
- 000001B9			_MainProc ENDP
+ 000001E1  B8 00000000		    mov     EAX, 0      ; exit with return code 0
+ 000001E6  C3			    ret
+ 000001E7			_MainProc ENDP
 				END                             ; end of source code
-Microsoft (R) Macro Assembler Version 14.44.35219.0	    11/03/25 21:45:51
+Microsoft (R) Macro Assembler Version 14.44.35220.0	    11/17/25 18:46:46
 example.asm						     Symbols 2 - 1
 
 
@@ -270,7 +306,7 @@ Segments and Groups:
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
 _DATA  . . . . . . . . . . . . .	32 Bit	 00000086 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 000001B9 Para	  Public  'CODE'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 000001E7 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -284,13 +320,20 @@ Comp2  . . . . . . . . . . . . .	P Near	 00000014 _TEXT	Length= 00000024 Public
 Comp3  . . . . . . . . . . . . .	P Near	 00000038 _TEXT	Length= 00000021 Public
   Chk_AC . . . . . . . . . . . .	L Near	 0000004F _TEXT	
   A_Max  . . . . . . . . . . . .	L Near	 00000057 _TEXT	
-_MainProc  . . . . . . . . . . .	P Near	 000000C1 _TEXT	Length= 000000F8 Public
+_MainProc  . . . . . . . . . . .	P Near	 000000EF _TEXT	Length= 000000F8 Public
 factNum  . . . . . . . . . . . .	P Near	 00000059 _TEXT	Length= 00000022 Public
   RECURSE  . . . . . . . . . . .	L Near	 00000069 _TEXT	
   EXIT . . . . . . . . . . . . .	L Near	 00000079 _TEXT	
 myAvg  . . . . . . . . . . . . .	P Near	 0000007B _TEXT	Length= 00000025 Public
   Begin_Avg_Calc . . . . . . . .	L Near	 0000008C _TEXT	
   Done . . . . . . . . . . . . .	L Near	 00000098 _TEXT	
+myPalin  . . . . . . . . . . . .	P Near	 000000C1 _TEXT	Length= 0000002E Public
+  L1 . . . . . . . . . . . . . .	L Near	 000000C6 _TEXT	
+  J1END  . . . . . . . . . . . .	L Near	 000000D6 _TEXT	
+  L2 . . . . . . . . . . . . . .	L Near	 000000DB _TEXT	
+  L2END  . . . . . . . . . . . .	L Near	 000000E9 _TEXT	
+  LYES . . . . . . . . . . . . .	L Near	 000000EF _TEXT	
+  LNO  . . . . . . . . . . . . .	L Near	 000000EF _TEXT	
 myPerm . . . . . . . . . . . . .	P Near	 000000A0 _TEXT	Length= 00000021 Public
   Perm_Loop  . . . . . . . . . .	L Near	 000000B5 _TEXT	
   R_Greater_N  . . . . . . . . .	L Near	 000000BC _TEXT	
@@ -328,4 +371,4 @@ sum  . . . . . . . . . . . . . .	Byte	 00000062 _DATA
 wtoaproc . . . . . . . . . . . .	L Near	 00000000 FLAT	External
 
 	   0 Warnings
-	   0 Errors
+	   3 Errors

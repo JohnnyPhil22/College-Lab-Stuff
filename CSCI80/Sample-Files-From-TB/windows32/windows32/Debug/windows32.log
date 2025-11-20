@@ -1,2 +1,5 @@
 ﻿  Assembling example.asm...
-  windows32.vcxproj -> C:\Users\Jonathan Philips\Coding\College-Lab-Stuff\CSCI80\Sample-Files-From-TB\windows32\Debug\windows32.exe
+example.asm(170): error A2008: syntax error : str
+example.asm(179): error A2008: syntax error : str
+example.asm(174): error A2006: undefined symbol : L1END
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\example.obj" /W3 /errorReport:prompt /Fl /Taexample.asm" exited with code 1.

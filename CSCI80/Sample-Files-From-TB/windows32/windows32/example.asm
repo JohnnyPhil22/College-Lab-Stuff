@@ -166,6 +166,39 @@ myPerm PROC         ; Calculate permutation nPr, two DWORD params
         ret
 myPerm ENDP
 
+myPalin PROC        ; Procedure to find out if string = palindrome or not
+    lea ESI, str
+    mov EDI, 0
+    L1:
+        cmp BYTE PTR [ESI], 0
+        jz L1END
+        inc ESI
+        inc EDI
+        jmp L1
+    J1END:
+        cmp EDI, str
+        mov EDI, ESI
+        add EDI, EDX
+        dec EDI
+    L2:
+        cmp ESI, EDI
+        jge L2END
+        mov AL, BYTE PTR [EDI]
+        cmp AL, BYTE PTR [EDI]
+        jnz L2END
+        inc ESI
+        dec EDI
+        jmp L2
+    L2END:
+        cmp ESI, EDI
+        jge LYES
+        jnz LNO
+    LYES:
+        ; Palindrome = true
+    LNO:
+        ; Palindrome = no
+myPalin ENDP
+
 _MainProc PROC
     ; Example code for adding two numbers from user input (TB material)
     input   prompt1, string, 40      ; read ASCII characters
